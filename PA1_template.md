@@ -6,7 +6,7 @@ output:
   html_document: 
     keep_md: yes
     self_contained: no
-    smart: no
+    smart: yes
 ---
 
 0. Setting preferences for knitr
@@ -222,6 +222,4 @@ xyplot(StepsByInterval$steps ~ StepsByInterval$interval|StepsByInterval$DayType,
        layout=c(1,2), type="l")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-19-1.png)
-
-
+![](PA1_template_files/figure-html/unnamed-chunk-19-1.JPG)<!-- -->
