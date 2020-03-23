@@ -1,13 +1,7 @@
----
-title: 'Reproducible Research: Programming Assignment'
-author: "Line Ettrich"
-date: "3/22/2020"
-output: 
-  html_document: 
-    keep_md: yes
-    self_contained: no
-    smart: yes
----
+# Reproducible Research: Programming Assignment'
+* Author: Line Ettrich
+* Date: "3/22/2020"
+
 ## Pre- Preperations 
 
 * Setting preferences for knitr
