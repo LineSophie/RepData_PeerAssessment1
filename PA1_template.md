@@ -1,22 +1,24 @@
-
-# Reproducible Research: Programming Assignment 1 Coursera
-
-Author: Line Ettrich
-
-Date: 3/22/2020
-
-* This Document contains the Answers for the Peer Graded Assignment 1 for the Coursera Reproducible Research Class.
-
 ---
-0. Setting preferences for knitr
+title: 'Reproducible Research: Programming Assignment'
+author: "Line Ettrich"
+date: "3/22/2020"
+output: 
+  html_document: 
+    keep_md: yes
+    self_contained: no
+    smart: yes
+---
+## Pre- Preperations 
+
+* Setting preferences for knitr
 
 ```r
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-1. Loading and Preprocessing the Data
+## Loading and Preprocessing the Data
 
-1.1 Downloading and Unzipping Data 
+Step 1: Downloading and Unzipping the Data 
 
 ```r
 if(!file.exists("./Data5")){dir.create("./Data5")}
@@ -25,22 +27,24 @@ download.file(fileUrl,destfile="./Data5/ActivityMonitoring.zip")
 unzip(zipfile="./Data5/ActivityMonitoring.zip",exdir="./Data5")
 ```
 
-1.2 Reading the File
+Step 2: Reading the File
 
 ```r
 ActivityMonitoring <- read.csv("./Data5/activity.csv", header = TRUE)
 ```
 
-1.3 Reformatting the Date variable and Omitting NA's to transform the data into a format suitable for the analysis *
+Step 3: Reformatting the Date variable and Omitting NA's to transform the data into a format suitable for the analysis
+
+* for the first few parts, the missing values will be omitted to do the analysis
 
 ```r
 ActivityMonitoring$date <- format(as.Date(ActivityMonitoring$date), "%d/%m/%y")
 ActivityMonitoring2 <- na.omit(ActivityMonitoring)
 ```
 
-2. Constructing a Histogram for the Total Number of Steps taken each Day
+## What is mean total number of steps taken per day?
 
-2.1 Reading in neccessary Packages (dplyr)
+Loading the neccessary Packages (dplyr)
 
 ```r
 library(dplyr)
@@ -63,7 +67,8 @@ library(dplyr)
 ##     intersect, setdiff, setequal, union
 ```
 
-2.2 Calculating the Total Number of Steps per Day 
+
+Step 1: Calculating the Total Number of Steps per Day 
 
 ```r
 Stepsperday <- ActivityMonitoring2 %>% 
@@ -71,7 +76,7 @@ Stepsperday <- ActivityMonitoring2 %>%
   summarize(TotalSteps=sum(steps))
 ```
 
-2.3 Constructing the Histogram for the Total Number of Steps taken each Day 
+Step 2: Constructing the Histogram for the Total Number of Steps taken each Day 
 
 ```r
 hist(Stepsperday$TotalSteps, 
@@ -84,16 +89,17 @@ hist(Stepsperday$TotalSteps,
 
 ![](PA1_template_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
-3. Calculating the Mean and Median Number of Steps taken each Day
+Step 3: Calculating the Mean and Median Number of Steps taken each Day
 
 ```r
 MeanSteps <- mean(Stepsperday$TotalSteps)
 MedianSteps<- median(Stepsperday$TotalSteps)
 ```
 
-4. Constructing a Time Series Plot of the Average Number of Steps taken
+## What is the average daily activity pattern?
 
-4.1 Calculating the Average Steps per Day
+
+Step 1: Calculating the Average Steps per Day
 
 ```r
 AverageSteps <- ActivityMonitoring2 %>%
@@ -101,7 +107,7 @@ AverageSteps <- ActivityMonitoring2 %>%
   summarize(AveSteps=mean(steps))
 ```
 
-4.2 Constructing the Time Series Plot
+Step 2: Constructing a Time Series Plot for the Average Steps
 
 ```r
 plot(AverageSteps$interval, AverageSteps$AveSteps, 
@@ -114,7 +120,7 @@ plot(AverageSteps$interval, AverageSteps$AveSteps,
 
 ![](PA1_template_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 
-5. Calculating the 5-minute Interval that, on average, contains the maximum Number of Steps
+Step 3: Calculating the 5-minute Interval that, on average, contains the maximum Number of Steps
 
 ```r
 max_interval <- AverageSteps[which.max(AverageSteps$AveSteps),1]
@@ -128,9 +134,9 @@ max_interval
 ## 1      835
 ```
 
-6. Creating a new Dataset where NA's are replaced with Averages 
+## Imputing missing values
 
-6.1 Calculating the Total Number of NA's in the Dataset
+Step 1: Calculating the Total Number of NA's in the Dataset
 
 ```r
 MissingValuesActivity <- is.na(ActivityMonitoring$steps)
@@ -141,7 +147,10 @@ sum(MissingValuesActivity)
 ## [1] 2304
 ```
 
-6.2 Code that describes and shows the Strategy for imputing missing Data (replacing NA's with Averages)
+Step: 2 Creating New Dataset in which Missing Values are replaced with averages
+
+* I chose to replace the missing values with the averages for the 5 min intervals
+* Below you finde the code that describes and shows the strategy for imputing missing data 
 
 ```r
 NewActivityMonitoring <- ActivityMonitoring
@@ -154,7 +163,7 @@ for (i in 1:nrow(NewActivityMonitoring)) {
 }
 ```
 
-7. Constructing the Histogram of the Total Number of Steps taken each Day after Missing Values are imputed
+Step 3: Constructing the Histogram of the Total Number of Steps taken each Day after Missing Values are imputed
 
 ```r
 AverageStepNew <- NewActivityMonitoring %>% group_by(date) %>% summarize(AveSteps2= sum(steps))
@@ -170,9 +179,9 @@ hist(AverageStepNew$AveSteps2,
 
 ![](PA1_template_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
 
-8. Constructing a Panel Plot comparing the Average Number of Steps taken per 5-minute Interval across Weekdays and Weekends
+## Are there differences in activity patterns between weekdays and weekends?
 
-8.1 Calculating the Mean and Median for imputed Data
+Step 1: Calculating the Mean and Median for imputed Data
 
 ```r
 mean(AverageStepNew$AveSteps2)
@@ -190,7 +199,7 @@ median(AverageStepNew$AveSteps2)
 ## [1] 10766.19
 ```
 
-8.2 Assigning Weekday and Weekend Labels 
+Step 2: Assigning Weekday and Weekend Labels 
 
 ```r
 NewActivityMonitoring$date <- as.POSIXct(NewActivityMonitoring$date, format = "%d/%m/%y")
@@ -199,19 +208,19 @@ NewActivityMonitoring$DayType <- "weekday"
 NewActivityMonitoring$DayType[NewActivityMonitoring$Day %in% c("Saturday", "Sunday")] <- "weekend"
 ```
 
-8.3 Loading Lattice Package
+Step 3: Loading Lattice Package
 
 ```r
 library(lattice)
 ```
 
-8.4 Computing the Average Steps for Weekdays/Weekends
+Step 4: Computing the Average Steps for Weekdays/Weekends
 
 ```r
 StepsByInterval <- aggregate(steps ~ interval + DayType, NewActivityMonitoring, mean)
 ```
 
-8.4 Creating a Time Series Plot for the Average Steps per day by Interval
+Step 5: Creating a Time Series Plot for the Average Steps per day by Interval
 
 ```r
 xyplot(StepsByInterval$steps ~ StepsByInterval$interval|StepsByInterval$DayType, 
