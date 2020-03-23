@@ -5,7 +5,7 @@ Author: Line Ettrich
 
 Date: "3/22/2020"
 
-* This document contains the answers for the peer graded assignment 1 for the Coursera Reproducible Research class.
+* This Document contains the Answers for the Peer Graded Assignment 1 for the Coursera Reproducible Research Class.
 
 ---
 0. Setting preferences for knitr
