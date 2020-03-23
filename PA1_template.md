@@ -1,5 +1,5 @@
 ---
-title: 'Reproducible Research: Programming Assignment'
+# Reproducible Research: Programming Assignment
 author: "Line Ettrich"
 date: "3/22/2020"
 output: 
