@@ -222,4 +222,4 @@ xyplot(StepsByInterval$steps ~ StepsByInterval$interval|StepsByInterval$DayType,
        layout=c(1,2), type="l")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-19-1.JPG)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-19-1.png)<!-- -->
