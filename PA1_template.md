@@ -1,10 +1,10 @@
 
-# Reproducible Research: Programming Assignment
+# Reproducible Research: Programming Assignment 1 Coursera
 
 Author: Line Ettrich
 Date: "3/22/2020"
 
-
+---
 0. Setting preferences for knitr
 
 ```r
