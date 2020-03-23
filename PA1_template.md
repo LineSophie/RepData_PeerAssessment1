@@ -5,6 +5,8 @@ Author: Line Ettrich
 
 Date: "3/22/2020"
 
+* This document contains the answers for the peer graded assignment 1 for the Coursera Reproducible Research class.
+
 ---
 0. Setting preferences for knitr
 
@@ -29,7 +31,7 @@ unzip(zipfile="./Data5/ActivityMonitoring.zip",exdir="./Data5")
 ActivityMonitoring <- read.csv("./Data5/activity.csv", header = TRUE)
 ```
 
-1.3 Reformatting the Date variable and Omitting NA's to transform the data into a format suitable for the analysis
+1.3 Reformatting the Date variable and Omitting NA's to transform the data into a format suitable for the analysis *
 
 ```r
 ActivityMonitoring$date <- format(as.Date(ActivityMonitoring$date), "%d/%m/%y")
