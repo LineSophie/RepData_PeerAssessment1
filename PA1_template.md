@@ -112,8 +112,7 @@ plot(AverageSteps$interval, AverageSteps$AveSteps,
      main="Average steps taken during 5 minute interval",
      cex.main = 1)
 ```
-
-![](PA1_template_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+<img src="PA1_template_files/figure-html/unnamed-chunk-10-1.png" />
 
 5. Calculating the 5-minute Interval that, on average, contains the maximum Number of Steps
 
