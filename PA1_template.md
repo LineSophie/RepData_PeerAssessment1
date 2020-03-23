@@ -2,6 +2,7 @@
 # Reproducible Research: Programming Assignment 1 Coursera
 
 Author: Line Ettrich
+
 Date: "3/22/2020"
 
 ---
