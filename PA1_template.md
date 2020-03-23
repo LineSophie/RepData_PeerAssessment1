@@ -1,7 +1,7 @@
 # Reproducible Research: Programming Assignment
 * Author: Line Ettrich
 * Date: 3/22/2020
-
+ 
 ## Pre- Preperations 
 
 * Setting preferences for knitr
