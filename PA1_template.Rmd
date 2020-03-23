@@ -7,7 +7,7 @@ output:
     keep_md: yes
     self_contained: no
     smart: yes
-
+---
 ## Pre- Preperations 
 
 * Setting preferences for knitr
@@ -32,6 +32,7 @@ ActivityMonitoring <- read.csv("./Data5/activity.csv", header = TRUE)
 
 Step 3: Reformatting the Date variable and Omitting NA's to transform the data into a format suitable for the analysis
 
+
 * for the first few parts, the missing values will be omitted to do the analysis
 ```{r}
 ActivityMonitoring$date <- format(as.Date(ActivityMonitoring$date), "%d/%m/%y")
@@ -40,11 +41,10 @@ ActivityMonitoring2 <- na.omit(ActivityMonitoring)
 
 ## What is mean total number of steps taken per day?
 
-Loading the neccessary Packages (dplyr)
+Step 0: Loading the neccessary Packages (dplyr)
 ```{r}
 library(dplyr)
 ```
-
 
 Step 1: Calculating the Total Number of Steps per Day 
 ```{r}
@@ -66,11 +66,15 @@ hist(Stepsperday$TotalSteps,
 Step 3: Calculating the Mean and Median Number of Steps taken each Day
 ```{r}
 MeanSteps <- mean(Stepsperday$TotalSteps)
+print(MeanSteps)
 MedianSteps<- median(Stepsperday$TotalSteps)
+print(MedianSteps)
 ```
 
-## What is the average daily activity pattern?
+* The mean number of steps is 10766.19 and the median is 10765.
 
+
+## What is the average daily activity pattern?
 
 Step 1: Calculating the Average Steps per Day
 ```{r}
@@ -95,6 +99,8 @@ max_interval <- AverageSteps[which.max(AverageSteps$AveSteps),1]
 max_interval
 ```
 
+* The 5-minute interval, that on average across all the days in the dataset, contains the maximum number of steps is at 835.
+
 ## Imputing missing values
 
 Step 1: Calculating the Total Number of NA's in the Dataset
@@ -102,6 +108,8 @@ Step 1: Calculating the Total Number of NA's in the Dataset
 MissingValuesActivity <- is.na(ActivityMonitoring$steps)
 sum(MissingValuesActivity)
 ```
+
+* There are 2304 missing values.
 
 Step: 2 Creating New Dataset in which Missing Values are replaced with averages
 
@@ -139,6 +147,11 @@ mean(AverageStepNew$AveSteps2)
 median(AverageStepNew$AveSteps2)
 ```
 
+* The mean is 10766.19 and the median is also 10766.19
+* The mean remains unchanged from the old version and thus has seen no effect from the new imputed data
+* However, the median is now slightly higher, rising from 10765 tpo 10766.19
+
+
 Step 2: Assigning Weekday and Weekend Labels 
 ```{r}
 NewActivityMonitoring$date <- as.POSIXct(NewActivityMonitoring$date, format = "%d/%m/%y")
@@ -165,3 +178,6 @@ xyplot(StepsByInterval$steps ~ StepsByInterval$interval|StepsByInterval$DayType,
        ylab="Steps",
        layout=c(1,2), type="l")
 ```
+
+* As evident from the plot, there is a clear difference between weekday and weekend activity. 
+* For isntance, on weekdays, there is a much larger spike of activity between approximately 8.00 and 9.00
