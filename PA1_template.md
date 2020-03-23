@@ -1,4 +1,4 @@
-# Reproducible Research: Programming Assignment'
+# Reproducible Research: Programming Assignment
 * Line Ettrich
 * Date: 3/22/2020
 
