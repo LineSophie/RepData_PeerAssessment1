@@ -3,7 +3,7 @@
 
 Author: Line Ettrich
 
-Date: "3/22/2020"
+Date: 3/22/2020
 
 * This Document contains the Answers for the Peer Graded Assignment 1 for the Coursera Reproducible Research Class.
 
