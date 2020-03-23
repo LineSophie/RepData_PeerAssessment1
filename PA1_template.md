@@ -10,6 +10,10 @@ output:
 ---
 
 
+```r
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 1. Loading and Preprocessing the Data
 
 1.1 Downloading and Unzipping Data 
@@ -42,6 +46,23 @@ ActivityMonitoring2 <- na.omit(ActivityMonitoring)
 library(dplyr)
 ```
 
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
 2.2 Calculating the Total Number of Steps per Day 
 
 ```r
@@ -61,7 +82,7 @@ hist(Stepsperday$TotalSteps,
      ylim = c(0, 35))
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
 3. Calculating the Mean and Median Number of Steps taken each Day
 
@@ -91,7 +112,7 @@ plot(AverageSteps$interval, AverageSteps$AveSteps,
      cex.main = 1)
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 
 5. Calculating the 5-minute Interval that, on average, contains the maximum Number of Steps
 
@@ -147,7 +168,7 @@ hist(AverageStepNew$AveSteps2,
      xlim = c(0,28000))
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
 
 8. Constructing a Panel Plot comparing the Average Number of Steps taken per 5-minute Interval across Weekdays and Weekends
 
@@ -200,4 +221,4 @@ xyplot(StepsByInterval$steps ~ StepsByInterval$interval|StepsByInterval$DayType,
        layout=c(1,2), type="l")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-18-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-19-1.png)<!-- -->
