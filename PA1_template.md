@@ -1,6 +1,6 @@
-# Reproducible Research: Programming Assignment'
+# Reproducible Research: Programming Assignment
 * Author: Line Ettrich
-* Date: "3/22/2020"
+* Date: 3/22/2020
 
 ## Pre- Preperations 
 
